@@ -52,8 +52,7 @@ public class cifrado {
             }
 
             System.out.println("El archivo existe");
-            BufferedReader br = null;
-            PrintWriter pw = null;
+
 
             while (true) {
                 System.out.println("1. Establecer contraseña");
