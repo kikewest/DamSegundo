@@ -42,7 +42,7 @@ public class PruebaInterfaz {
 	public PruebaInterfaz() {
 		initialize();
 	}
-
+//
 	/**
 	 * Initialize the contents of the frame.
 	 */
