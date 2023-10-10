@@ -83,7 +83,7 @@ public class cifradoMessageDigest {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Comprobar si el archivo de contraseñas existe y crearlo si no existe
         File archivo = new File("ContrasenaHasheada.txt");
         try {
@@ -98,21 +98,17 @@ public class cifradoMessageDigest {
                 System.out.println("2. Verificar contraseña");
                 System.out.println("3. Salir");
 
-                try {
-                    String opcion = new Scanner(System.in).nextLine();
+                String opcion = new Scanner(System.in).nextLine();
 
-                    if ("1".equals(opcion)) {
-                        establecerContrasena();
-                    } else if ("2".equals(opcion)) {
-                        comprobarContrasena();
-                    } else if ("3".equals(opcion)) {
-                        break;
-                    } else {
-                        System.out.println("Opción no válida. Inténtalo de nuevo.");
-                    }
-                } catch (IOException e) {
-                    System.err.println("Error de entrada/salida.");
-                }
+				if ("1".equals(opcion)) {
+				    establecerContrasena();
+				} else if ("2".equals(opcion)) {
+				    comprobarContrasena();
+				} else if ("3".equals(opcion)) {
+				    break;
+				} else {
+				    System.out.println("Opción no válida. Inténtalo de nuevo.");
+				}
             }
         } catch (IOException e) {
             System.err.println("Error al crear el archivo.");
