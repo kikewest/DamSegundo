@@ -33,7 +33,7 @@ public class cifradoMessageDigest {
             return null;
         }
     }
-
+    
     // Método para establecer una contraseña
     public static void establecerContrasena() {
         try {
