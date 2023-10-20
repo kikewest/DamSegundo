@@ -1,5 +1,6 @@
 package xml;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.BevelBorder;
 import javax.swing.text.DefaultCaret;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -56,12 +62,19 @@ public class Interfaz {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
+		setNimbusLookAndFeel();
 		JLabel lblNewLabel = new JLabel("Bienvenido a crunchyroll");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(168, 38, 286, 54);
+		lblNewLabel.setBounds(169, 11, 286, 54);
 		frame.getContentPane().add(lblNewLabel);
-
+		frame.setResizable(false);
+		ImageIcon backgroundImage = new ImageIcon("animes.jpg"); // Reemplaza con la ubicación real de tu imagen.
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        backgroundLabel.setBounds(0, -90, 700, 500);
+        frame.getLayeredPane().add(backgroundLabel, Integer.valueOf(Integer.MIN_VALUE));
+        JPanel contentPane = (JPanel) frame.getContentPane();
+        contentPane.setOpaque(false);
 		JButton btnNewButton = new JButton("Crear XML");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -70,7 +83,6 @@ public class Interfaz {
 					abrirNuevoFrame();
 					frame.setVisible(false);
 				} catch (ParserConfigurationException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -87,7 +99,7 @@ public class Interfaz {
 		menuFrame.addWindowListener(new WindowAdapter() {
 	        @Override
 	        public void windowClosing(WindowEvent e) {
-	            int respuesta = JOptionPane.showConfirmDialog(menuFrame, "¿Seguro que te quieres ir? (Me merezco un 10, Soralla)", "Confirmación", JOptionPane.YES_NO_OPTION);
+	            int respuesta = JOptionPane.showConfirmDialog(menuFrame, "¿Seguro que te quieres ir? (Me merezco un 10, Soraya)", "Confirmación", JOptionPane.YES_NO_OPTION);
 	            if (respuesta == JOptionPane.YES_OPTION) {
 	                menuFrame.dispose(); // Cierra la ventana si el usuario confirma
 	            }
@@ -95,14 +107,14 @@ public class Interfaz {
 	    });
 		// Crea un panel con un GridLayout para centrar los botones
 		JPanel buttonPanel = new JPanel(new GridLayout(5, 1, 0, 10));
-		menuFrame.add(buttonPanel);
+		menuFrame.getContentPane().add(buttonPanel);
 
 		// Crea botones con las opciones
-		JButton btnMostrarContenido = new JButton("Mostrar Contenido del XML");
-		JButton btnNumeroEspectadores = new JButton("Número de Espectadores");
-		JButton btnModificarTitulo = new JButton("Modificar Título del Anime");
-		JButton btnMeterObjetos = new JButton("Meter Objetos");
-		JButton btnPorcentajeAudiencia = new JButton("Porcentaje de Audiencia (mes)");
+		JButton btnMostrarContenido = createStyledButton("Mostrar Contenido del XML");
+        JButton btnNumeroEspectadores = createStyledButton("Número de Espectadores");
+        JButton btnModificarTitulo = createStyledButton("Modificar Título del Anime");
+        JButton btnMeterObjetos = createStyledButton("Meter Objetos");
+        JButton btnPorcentajeAudiencia = createStyledButton("Porcentaje de Audiencia (mes)");
 
 		// Agrega los botones al panel
 		buttonPanel.add(btnMostrarContenido);
@@ -111,7 +123,13 @@ public class Interfaz {
 		buttonPanel.add(btnModificarTitulo);
 		buttonPanel.add(btnMeterObjetos);
 		buttonPanel.add(btnPorcentajeAudiencia);
-
+		
+		addClickAnimation(btnMostrarContenido);
+	    addClickAnimation(btnNumeroEspectadores);
+	    addClickAnimation(btnModificarTitulo);
+	    addClickAnimation(btnMeterObjetos);
+	    addClickAnimation(btnPorcentajeAudiencia);
+		
 		// Muestra el nuevo frame
 		menuFrame.setVisible(true);
 
@@ -143,7 +161,6 @@ public class Interfaz {
                 try {
 					agregarAnime();
 				} catch (JAXBException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
             }
@@ -379,7 +396,7 @@ public class Interfaz {
 		    JFrame porcentajeFrame = new JFrame("Porcentaje de Audiencia (mes)");
 		    porcentajeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		    porcentajeFrame.setSize(400, 300);
-		    porcentajeFrame.add(scrollPane);
+		    porcentajeFrame.getContentPane().add(scrollPane);
 		    porcentajeFrame.setVisible(true);
 		    porcentajeFrame.setLocationRelativeTo(null);
     }
@@ -486,7 +503,7 @@ public class Interfaz {
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		espectadoresFrame.add(scrollPane);
+		espectadoresFrame.getContentPane().add(scrollPane);
 
 		// Llama al método NumEspectadores.NumEspec para obtener el contenido de espectadores
 		String espectadoresContent = NumEspectadores.NumEspec();
@@ -508,7 +525,7 @@ public class Interfaz {
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		contentFrame.add(scrollPane);
+		contentFrame.getContentPane().add(scrollPane);
 
 		// Llama al método LeerXML2.Leer y obtiene el contenido del archivo XML
 		String xmlContent = LeerXML2.Leer();
@@ -520,5 +537,80 @@ public class Interfaz {
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
 		contentFrame.setVisible(true);
+	}
+	
+	private void setNimbusLookAndFeel() {
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+           
+        }
+    }
+	
+	private JButton createStyledButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Tahoma", Font.BOLD, 14));
+        button.setBorder(new BevelBorder(BevelBorder.RAISED));
+        button.setBackground(new java.awt.Color(255, 165, 0)); // Color de fondo personalizado
+        button.setForeground(new java.awt.Color(255, 255, 255)); // Color del texto
+        return button;
+    }
+	
+	private void addClickAnimation(final JButton button) {
+	    final Color originalColor = button.getBackground();
+	    final Color clickColor = new Color(255, 0, 0); // Color de fondo al hacer clic
+
+	    button.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            animateButtonOnClick(button, originalColor, clickColor);
+	        }
+	    });
+	}
+
+	private void animateButtonOnClick(final JButton button, final Color originalColor, final Color targetColor) {
+	    final int animationDuration = 2000; // Duración de la animación en milisegundos
+	    final int steps = 500; // Número de pasos de animación
+	    final long delay = animationDuration / steps;
+	    final int numCycles = 5; // Número de ciclos de animación
+
+	    new Thread(new Runnable() {
+	        public void run() {
+	            for (int cycle = 0; cycle < numCycles; cycle++) {
+	                for (int i = 1; i <= steps; i++) {
+	                    final float alpha = (float) i / steps;
+	                    final Color interpolatedColor = new Color(
+	                    	(int) (originalColor.getBlue() * (1 - alpha) + targetColor.getBlue() * alpha),
+	                        (int) (originalColor.getRed() * (1 - alpha) + targetColor.getRed() * alpha),
+	                        (int) (originalColor.getGreen() * (1 - alpha) + targetColor.getGreen() * alpha)
+	                    );
+
+	                    // Actualiza el color del botón en el hilo de la interfaz de usuario
+	                    SwingUtilities.invokeLater(new Runnable() {
+	                        public void run() {
+	                            button.setBackground(interpolatedColor);
+	                        }
+	                    });
+
+	                    try {
+	                        Thread.sleep(delay);
+	                    } catch (InterruptedException e) {
+	                        e.printStackTrace();
+	                    }
+	                }
+
+	                // Restaurar el color original al final de la animación
+	                SwingUtilities.invokeLater(new Runnable() {
+	                    public void run() {
+	                        button.setBackground(originalColor);
+	                    }
+	                });
+	            }
+	        }
+	    }).start();
 	}
 }

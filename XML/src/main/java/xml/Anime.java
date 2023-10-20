@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 
 // Indica que esta clase es el elemento raíz en el XML
 @XmlRootElement
-@XmlType(propOrder = { "titulo", "autor", "codigo", "espectadores" })
+@XmlType(propOrder = {"titulo", "autor", "codigo", "espectadores"})
 public class Anime {
     private String titulo;
     private String autor;
