@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -42,11 +43,26 @@ public class Map1 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 619, 435);
+		frame.setBounds(100, 100, 580, 432);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnAniadir = new JButton("Añadir");
+		btnAniadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nombre = JOptionPane.showInputDialog(frame, "Por favor introduzca el nombre del alumno:");
+				if (nombre != null && !nombre.isEmpty()) {
+					String nota = JOptionPane.showInputDialog(frame, "Por favor introduzca la nota del alumno");
+					try {
+						double notad = Double.parseDouble(nota);
+						notas.put(nombre, notad);
+						JOptionPane.showMessageDialog(frame, "Alumno añadido con éxito.");
+					}catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(frame, "Error: Ingrese una nota válida (número)."+e);
+					}
+				}
+			}
+		});
 		btnAniadir.setBounds(10, 339, 101, 46);
 		frame.getContentPane().add(btnAniadir);
 		
