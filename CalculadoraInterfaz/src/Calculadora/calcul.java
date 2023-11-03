@@ -255,6 +255,7 @@ public class calcul extends JFrame implements ActionListener{
 		contentPane.add(btnCe);
 
 	}
+	@SuppressWarnings("removal")
 	public void actionPerformed(ActionEvent e) {
 		if(((JButton)e.getSource()).equals(buttonlimpiar_1)){// Botón "⌫"	    
 		    String textoActual = texField_insertadodeDatos.getText();

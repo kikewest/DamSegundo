@@ -14,7 +14,7 @@ public class cifradoMessageDigest {
 	// La sal es una cadena que se usa para fortalecer el hash de las contraseñas.
     // En una aplicación real, deberías usar una sal diferente y secreta para cada usuario.
     private static final String SALT = "MiValorDeSal";
-
+    static Scanner leer = new Scanner(System.in);
     // Método para hashear una contraseña utilizando el algoritmo SHA-256 con una sal.
     public static String hashearContrasena(String contrasena) {
         try {
@@ -41,7 +41,8 @@ public class cifradoMessageDigest {
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
             System.out.println("Establece una contraseña: ");
-            String contrasena = new Scanner(System.in).nextLine();
+            String contrasena = leer.nextLine();
+            leer.close();
             String contrasenaHasheada = hashearContrasena(contrasena);
 
             // Escribe la contraseña hasheada en un archivo
@@ -67,7 +68,8 @@ public class cifradoMessageDigest {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             System.out.println("Ingresa la contraseña: ");
-            String contrasenaIngresada = new Scanner(System.in).nextLine();
+            String contrasenaIngresada = leer.nextLine();
+            leer.close();
             String contrasenaHasheadaAlmacenada = bufferedReader.readLine();
 
             bufferedReader.close();
@@ -98,8 +100,8 @@ public class cifradoMessageDigest {
                 System.out.println("2. Verificar contraseña");
                 System.out.println("3. Salir");
 
-                String opcion = new Scanner(System.in).nextLine();
-
+                String opcion = leer.nextLine();
+                leer.close();
 				if ("1".equals(opcion)) {
 				    establecerContrasena();
 				} else if ("2".equals(opcion)) {
