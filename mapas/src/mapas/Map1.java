@@ -1,15 +1,14 @@
 package mapas;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Map1 {
 
@@ -46,6 +45,7 @@ public class Map1 {
 		frame.setBounds(100, 100, 580, 432);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		JButton btnAniadir = new JButton("Añadir");
 		btnAniadir.addActionListener(new ActionListener() {
@@ -57,8 +57,8 @@ public class Map1 {
 						double notad = Double.parseDouble(nota);
 						notas.put(nombre, notad);
 						JOptionPane.showMessageDialog(frame, "Alumno añadido con éxito.");
-					}catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(frame, "Error: Ingrese una nota válida (número)."+e);
+					}catch (NumberFormatException x) {
+						JOptionPane.showMessageDialog(frame, "Error: Ingrese una nota válida (número)."+x);
 					}
 				}
 			}
@@ -67,6 +67,11 @@ public class Map1 {
 		frame.getContentPane().add(btnAniadir);
 		
 		JButton btnVer = new JButton("Ver");
+		btnAniadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnVer.setBounds(121, 339, 101, 46);
 		frame.getContentPane().add(btnVer);
 		
