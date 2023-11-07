@@ -37,7 +37,7 @@ public class Mapa2 extends JFrame {
 		}
 		setDefaultLookAndFeelDecorated(true);
 		setVisible(true);
-		setTitle("mapa1");
+		setTitle("mapa2");
 		setResizable(false);
 		botones = new JButton[etiquetas.length];
 		/* El número 10 es la coordenada x inicial, y (i * 111) agrega un espacio fijo (111 unidades) entre cada botón.

@@ -21,7 +21,7 @@ public class Controlador1 implements ActionListener {
 		notas.put("Kike", 9.5);
         notas.put("Jesus", 9.0);
         notas.put("Yerai", 8.8);
-        notas.put("Pablo", 6.0);
+        notas.put("Pabolo", 0.0);
         notas.put("Mario", 7.3);
         notas.put("Celuix", 7.8);
         notas.put("Rafa", 1.5);
