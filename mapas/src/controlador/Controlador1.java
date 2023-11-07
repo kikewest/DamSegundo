@@ -33,7 +33,7 @@ public class Controlador1 implements ActionListener {
 			btn.addActionListener(this);
 		}
 	}
-
+//
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==vista.botones[0]) {
