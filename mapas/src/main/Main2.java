@@ -1,10 +1,9 @@
 package main;
 
-public class Main {
+import vista.Mapa2;
 
+public class Main2 {
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		new Mapa2();
 	}
-
 }
