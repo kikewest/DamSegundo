@@ -53,6 +53,7 @@ public class Controlador2 implements ActionListener {
 	}
 
 	public void mostrarInventario() {
+		@SuppressWarnings("serial")
 		DefaultTableModel modelo = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int column) {
 				return false; // Establece todas las celdas como no editables

@@ -9,7 +9,6 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
 import com.jtattoo.plaf.bernstein.BernsteinLookAndFeel;
 
 import controlador.Controlador2;
