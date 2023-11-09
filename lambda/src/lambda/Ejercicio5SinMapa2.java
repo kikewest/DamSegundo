@@ -4,44 +4,44 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Ejercicio5SinMapa {
+public class Ejercicio5SinMapa2 {
 	public static void main(String[] args) {
 		long startTime = System.nanoTime(); // O puedes usar System.nanoTime();
         List<Integer> numeros = IntStream.range(1, 10001).boxed().collect(Collectors.toList());
 
         int tamañoParte = numeros.size() / 4;
-        List<Integer> parte1 = numeros.parallelStream()//significa que el procesamiento de los elementos en el flujo se puede realizar en paralelo,
+        List<Integer> parte1 = numeros.stream()//significa que el procesamiento de los elementos en el flujo se puede realizar en paralelo,
         		//utilizando múltiples núcleos de CPU si están disponibles.
                 .limit(tamañoParte)
                 .collect(Collectors.toList());
 
-        List<Integer> parte2 = numeros.parallelStream()
+        List<Integer> parte2 = numeros.stream()
                 .skip(tamañoParte)
                 .limit(tamañoParte)
                 .collect(Collectors.toList());
 
-        List<Integer> parte3 = numeros.parallelStream()
+        List<Integer> parte3 = numeros.stream()
                 .skip(2 * tamañoParte)
                 .limit(tamañoParte)
                 .collect(Collectors.toList());
 
-        List<Integer> parte4 = numeros.parallelStream()
+        List<Integer> parte4 = numeros.stream()
                 .skip(3 * tamañoParte)
                 .collect(Collectors.toList());
 
-        int sumaParte1 = parte1.parallelStream()
+        int sumaParte1 = parte1.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        int sumaParte2 = parte2.parallelStream()
+        int sumaParte2 = parte2.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        int sumaParte3 = parte3.parallelStream()
+        int sumaParte3 = parte3.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        int sumaParte4 = parte4.parallelStream()
+        int sumaParte4 = parte4.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
         
