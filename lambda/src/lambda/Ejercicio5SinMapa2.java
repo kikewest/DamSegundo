@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Ejercicio5SinMapa2 {
 	public static void main(String[] args) {
 		long startTime = System.nanoTime(); // O puedes usar System.nanoTime();
-        List<Integer> numeros = IntStream.range(1, 10001).boxed().collect(Collectors.toList());
+        List<Integer> numeros = IntStream.range(1, 100001).boxed().collect(Collectors.toList());
 
         int tamañoParte = numeros.size() / 4;
         List<Integer> parte1 = numeros.stream()//significa que el procesamiento de los elementos en el flujo se puede realizar en paralelo,
