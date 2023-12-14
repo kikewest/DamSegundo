@@ -57,3 +57,51 @@ public class elementos {
         mochilaBacktracking(pesos, capacidadMochila, indice + 1, pesoActual, solucionParcial, soluciones);
     }
 }
+/*package dardos;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Dardos {
+	 public static void main(String[] args) {
+	        int[] zonas = {10, 25, 50, 75};
+	        int dardos = 5;
+
+	        List<List<List<Integer>>> combinaciones = obtenerCombinacionesDardos(zonas, dardos);
+
+	        // Imprimir las combinaciones según la cantidad de dardos
+	        for (int i = 0; i < combinaciones.size(); i++) {
+	            System.out.println("Combinaciones con " + (i + 1) + " dardos:");
+	            for (List<Integer> lanzamientos : combinaciones.get(i)) {
+	                System.out.print(lanzamientos + " ");
+	            }
+	            System.out.println("\n");
+	        }
+	    }
+
+	    public static List<List<List<Integer>>> obtenerCombinacionesDardos(int[] zonas, int dardos) {
+	        List<List<List<Integer>>> result = new ArrayList<>();
+	        for (int i = 0; i <= dardos; i++) {
+	            result.add(new ArrayList<>());
+	        }
+	        List<Integer> combinacionActual = new ArrayList<>();
+	        dardosV3(result, zonas, dardos, 0, combinacionActual);
+	        return result;
+	    }
+
+	    public static void dardosV3(List<List<List<Integer>>> result, int[] zonas, int dardos,
+	                                int etapa, List<Integer> combinacionActual) {
+	        if (etapa == zonas.length) {
+	            if (dardos == 0) {
+	                result.get(combinacionActual.size() - 1).add(new ArrayList<>(combinacionActual));
+	            }
+	        } else {
+	            for (int d = 0; d <= dardos; d++) {
+	                combinacionActual.add(zonas[etapa]);
+	                dardosV3(result, zonas, dardos - d, etapa + 1, combinacionActual);
+	                combinacionActual.remove(combinacionActual.size() - 1);
+	            }
+	            // Agregamos el caso donde no se lanza ningún dardo en esta zona
+	            dardosV3(result, zonas, dardos, etapa + 1, combinacionActual);
+	        }
+	    }
+	}*/
