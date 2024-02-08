@@ -1,1 +1,156 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><crunchyroll><categoria><shonen><anime><titulo>Shingeki no Kyojin</titulo><autor>Hajime Isayama</autor><codigo>01</codigo><espectadores><meses><enero>300</enero><febrero>400</febrero><marzo>270</marzo><abril>500</abril><mayo>840</mayo><junio>700</junio><julio>600</julio><agosto>900</agosto><septiembre>750</septiembre><octubre>550</octubre><noviembre>400</noviembre><diciembre>450</diciembre></meses></espectadores></anime><anime><titulo>One Piece</titulo><autor>Eiichiro Oda</autor><codigo>02</codigo><espectadores><meses><enero>1000</enero><febrero>900</febrero><marzo>750</marzo><abril>600</abril><mayo>800</mayo><junio>650</junio><julio>550</julio><agosto>800</agosto><septiembre>450</septiembre><octubre>400</octubre><noviembre>500</noviembre><diciembre>600</diciembre></meses></espectadores></anime><anime><titulo>Kimetsu no Yaiba</titulo><autor>Koyoharu Gotouge</autor><codigo>05</codigo><espectadores><meses><enero>1000</enero><febrero>900</febrero><marzo>650</marzo><abril>760</abril><mayo>800</mayo><junio>600</junio><julio>450</julio><agosto>700</agosto><septiembre>850</septiembre><octubre>900</octubre><noviembre>1000</noviembre><diciembre>700</diciembre></meses></espectadores></anime></shonen><gore><anime><titulo>Elfen Lied</titulo><autor>Lynn Okamoto</autor><codigo>03</codigo><espectadores><meses><enero>500</enero><febrero>400</febrero><marzo>300</marzo><abril>500</abril><mayo>650</mayo><junio>700</junio><julio>560</julio><agosto>430</agosto><septiembre>650</septiembre><octubre>704</octubre><noviembre>340</noviembre><diciembre>800</diciembre></meses></espectadores></anime><anime><titulo>Chainsaw Man</titulo><autor>Tatsuya Endo</autor><codigo>04</codigo><espectadores><meses><enero>800</enero><febrero>600</febrero><marzo>500</marzo><abril>670</abril><mayo>500</mayo><junio>600</junio><julio>650</julio><agosto>550</agosto><septiembre>670</septiembre><octubre>900</octubre><noviembre>1000</noviembre><diciembre>980</diciembre></meses></espectadores></anime><anime><titulo>Gantz</titulo><autor>Hiroya Oku</autor><codigo>06</codigo><espectadores><meses><enero>500</enero><febrero>300</febrero><marzo>450</marzo><abril>550</abril><mayo>350</mayo><junio>650</junio><julio>450</julio><agosto>700</agosto><septiembre>500</septiembre><octubre>650</octubre><noviembre>400</noviembre><diciembre>300</diciembre></meses></espectadores></anime></gore></categoria></crunchyroll>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<crunchyroll>
+    <categoria>
+        <gore>
+            <anime>
+                <titulo>Elfen Lied</titulo>
+                <autor>Lynn Okamoto</autor>
+                <codigo>03</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>500</abril>
+                        <agosto>430</agosto>
+                        <diciembre>800</diciembre>
+                        <enero>500</enero>
+                        <febrero>400</febrero>
+                        <julio>560</julio>
+                        <junio>700</junio>
+                        <marzo>300</marzo>
+                        <mayo>650</mayo>
+                        <noviembre>340</noviembre>
+                        <octubre>704</octubre>
+                        <septiembre>650</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+            <anime>
+                <titulo>Chainsaw Man</titulo>
+                <autor>Tatsuya Endo</autor>
+                <codigo>04</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>670</abril>
+                        <agosto>550</agosto>
+                        <diciembre>980</diciembre>
+                        <enero>800</enero>
+                        <febrero>600</febrero>
+                        <julio>650</julio>
+                        <junio>600</junio>
+                        <marzo>500</marzo>
+                        <mayo>500</mayo>
+                        <noviembre>1000</noviembre>
+                        <octubre>900</octubre>
+                        <septiembre>670</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+            <anime>
+                <titulo>Gantz</titulo>
+                <autor>Hiroya Oku</autor>
+                <codigo>06</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>550</abril>
+                        <agosto>700</agosto>
+                        <diciembre>300</diciembre>
+                        <enero>500</enero>
+                        <febrero>300</febrero>
+                        <julio>450</julio>
+                        <junio>650</junio>
+                        <marzo>450</marzo>
+                        <mayo>350</mayo>
+                        <noviembre>400</noviembre>
+                        <octubre>650</octubre>
+                        <septiembre>500</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+            <anime>
+                <titulo>a</titulo>
+                <autor>d</autor>
+                <codigo>we</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>4</abril>
+                        <agosto>4</agosto>
+                        <diciembre>8</diciembre>
+                        <enero>3</enero>
+                        <febrero>4</febrero>
+                        <julio>3</julio>
+                        <junio>4</junio>
+                        <marzo>3</marzo>
+                        <mayo>3</mayo>
+                        <noviembre>55</noviembre>
+                        <octubre>6</octubre>
+                        <septiembre>3</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+        </gore>
+        <shonen>
+            <anime>
+                <titulo>Shingeki no Kyojin</titulo>
+                <autor>Hajime Isayama</autor>
+                <codigo>01</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>500</abril>
+                        <agosto>900</agosto>
+                        <diciembre>450</diciembre>
+                        <enero>300</enero>
+                        <febrero>400</febrero>
+                        <julio>600</julio>
+                        <junio>700</junio>
+                        <marzo>270</marzo>
+                        <mayo>840</mayo>
+                        <noviembre>400</noviembre>
+                        <octubre>550</octubre>
+                        <septiembre>750</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+            <anime>
+                <titulo>One Piece</titulo>
+                <autor>Eiichiro Oda</autor>
+                <codigo>02</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>600</abril>
+                        <agosto>800</agosto>
+                        <diciembre>600</diciembre>
+                        <enero>1000</enero>
+                        <febrero>900</febrero>
+                        <julio>550</julio>
+                        <junio>650</junio>
+                        <marzo>750</marzo>
+                        <mayo>800</mayo>
+                        <noviembre>500</noviembre>
+                        <octubre>400</octubre>
+                        <septiembre>450</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+            <anime>
+                <titulo>Kimetsu no Yaiba</titulo>
+                <autor>Koyoharu Gotouge</autor>
+                <codigo>05</codigo>
+                <espectadores>
+                    <meses>
+                        <abril>760</abril>
+                        <agosto>700</agosto>
+                        <diciembre>700</diciembre>
+                        <enero>1000</enero>
+                        <febrero>900</febrero>
+                        <julio>450</julio>
+                        <junio>600</junio>
+                        <marzo>650</marzo>
+                        <mayo>800</mayo>
+                        <noviembre>1000</noviembre>
+                        <octubre>900</octubre>
+                        <septiembre>850</septiembre>
+                    </meses>
+                </espectadores>
+            </anime>
+        </shonen>
+    </categoria>
+</crunchyroll>

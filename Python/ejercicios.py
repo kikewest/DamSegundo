@@ -1,3 +1,5 @@
+import math 
+
 ''' Ejercicio 1
 temperatura = int(input("Dime la temperatura en Celsius: "))
 Fahrenheit = temperatura * 9/5+32
@@ -89,3 +91,84 @@ def suma(*numeros):
     return sum(numeros)
 print(suma(1, 2, 3, 4))
 '''
+'''Ejercicio 11
+class Persona:
+    def __init__(self,nombre,edad):
+        self.nombre = nombre
+        self.edad = edad
+    def saludo(self):
+            return f'hola, mi nombre es {self.nombre}'
+kike = Persona('kike',30)
+print (kike.saludo())
+
+
+class Estudiante(Persona):
+    def __init__(self,nombre,edad,carrera):
+        super().__init__(nombre,edad)
+        self.carrera = carrera
+kike = Estudiante('kike',30,'100 metros valla')
+print (kike.saludo() +' y estoy en la carrera de ' +kike.carrera)
+'''
+'''Ejercicio 12
+with open('archivo.txt', 'w')as f:
+    f.write('hola mi hente estoy doramio')
+with open('archivo.txt','r') as f:
+    contenido = f.read()
+    print(contenido)
+'''
+class Libro:
+    def __init__(self,titulo,autor):
+        self.titulo = titulo
+        self.autor = autor
+    def toString(self):
+        return f'Titulo {self.titulo} y Autor {self.autor}'
+L = Libro('ta bueno', 'Paco el pescadero')
+print(L.toString())
+
+class Persona:
+    def __init__(self,nombre,edad):
+        self.nombre = nombre
+        self.edad = edad
+    def saludo(self):
+            return f'hola, mi nombre es {self.nombre}'
+kike = Persona('kike',30)
+print (kike.saludo())
+
+class Estudiante(Persona):
+    def __init__(self,nombre,edad,carrera,asignatura):
+        super().__init__(nombre,edad)
+        self.carrera = carrera
+        self.asignatura = asignatura
+kike = Estudiante('kike',30,'100 metros valla','Calentamiento')
+print (kike.saludo() +' y estoy en la carrera de ' +kike.carrera+' y la Asignatura de ' +kike.asignatura)
+
+
+class AreaCirculo:
+
+    def Calculo(radio):
+        area= math.pi*radio*radio
+        print ('El area de su circunferecia es: ' , area)
+AreaCirculo.Calculo(10)
+'''
+class miError(Exception):
+    def __init__(self,Mensaje = 'algo salio mal'):
+    self.mensaje=mensaje
+    '''
+
+try:
+    with open('archivo.txt', 'w') as f:
+        f.write('hola mi hente estoy doramio')
+except miError as e:
+        print(e)
+
+try:
+    nombre = 'archivo1.txt'
+    assert nombre== 'archivo.txt' , 'El nombre esta mal'
+    with open(nombre, 'r') as f:
+        
+        contenido = f.read()
+        num = len(contenido.split())
+        print('El archivo tiene:', num, 'palabras')
+except FileNotFoundError as e:
+    print (e)
+
