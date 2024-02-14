@@ -10,7 +10,7 @@
             <NumeroPaginas>576</NumeroPaginas>
             <Precio>21.75</Precio>
             <Sinopsis>Hay personas a las que dejamos atrás, hay deudas que nunca terminamos de pagar.</Sinopsis>
-            <Titulo>EL HIJO OLVIDADO</Titulo>
+            <Titulo>El Hijo Olvidado</Titulo>
         </Libro>
         <Libro>
             <Autor>EDUARDO MENDOZA</Autor>
@@ -20,7 +20,7 @@
             <NumeroPaginas>408</NumeroPaginas>
             <Precio>20.8</Precio>
             <Sinopsis>No vuelve con un detective chiflado, sino con nueve. No vuelve con un caso, sino con tres.Vuelve el mejor Eduardo Mendoza.</Sinopsis>
-            <Titulo>TRES ENIGMAS PARA LA ORGANIZACIÓN</Titulo>
+            <Titulo>Tres Enigmas</Titulo>
         </Libro>
         <Libro>
             <Autor>FERMINA CAÑAVERAS</Autor>
@@ -30,7 +30,7 @@
             <NumeroPaginas>504</NumeroPaginas>
             <Precio>19.85</Precio>
             <Sinopsis>La novela que nos cuenta la dura realidad de las mujeres españolas obligadas a prostituirse en los campos de concentración.</Sinopsis>
-            <Titulo>EL BARRACON DE LAS MUJERES</Titulo>
+            <Titulo>El Barracon</Titulo>
         </Libro>
         <Libro>
             <Autor>EMILY MCINTIRE</Autor>
@@ -40,7 +40,7 @@
             <NumeroPaginas>448</NumeroPaginas>
             <Precio>19.9</Precio>
             <Sinopsis>Después de Hooked, llega Scarred: la esperadísima secuela de la saga  Nunca Jamás que ha conquistado a TikTok, donde los villanos de cuento hallan su final feliz.</Sinopsis>
-            <Titulo>SCARRED</Titulo>
+            <Titulo>Scarred</Titulo>
         </Libro>
         <Libro>
             <Autor>EDUARDO MENDOZA</Autor>
@@ -50,7 +50,7 @@
             <NumeroPaginas>408</NumeroPaginas>
             <Precio>20.8</Precio>
             <Sinopsis>No vuelve con un detective chiflado, sino con nueve. No vuelve con un caso, sino con tres.Vuelve el mejor Eduardo Mendoza.</Sinopsis>
-            <Titulo>PARÍS DESPERTABA TARDE</Titulo>
+            <Titulo>Paris Despierta</Titulo>
         </Libro>
     </Categoria>
     <Categoria>
@@ -160,16 +160,16 @@
         </Libro>
     </Categoria>
     <Categoria>
-        <nombre>MisterioThriller</nombre>
+        <nombre>CienciaFiccion</nombre>
         <Libro>
-            <Autor>Dan Brown</Autor>
+            <Autor>Rafael Jara</Autor>
             <Editorial>Vintage</Editorial>
             <FechaDePublicacion>18-03-2003</FechaDePublicacion>
-            <Isbn>9780307474278</Isbn>
+            <Isbn>9788415148043</Isbn>
             <NumeroPaginas>592</NumeroPaginas>
             <Precio>14.99</Precio>
             <Sinopsis>Un thriller que mezcla misterio, simbología y conspiraciones en torno a un oscuro secreto religioso.</Sinopsis>
-            <Titulo>El código Da Vinci</Titulo>
+            <Titulo>La espiral y la sombra</Titulo>
         </Libro>
         <Libro>
             <Autor>Paula Hawkins</Autor>
@@ -179,7 +179,7 @@
             <NumeroPaginas>336</NumeroPaginas>
             <Precio>22.95</Precio>
             <Sinopsis>Un emocionante thriller psicológico que sigue la vida de una mujer obsesionada con una pareja aparentemente perfecta.</Sinopsis>
-            <Titulo>La chica del tren</Titulo>
+            <Titulo>Abraxas en una aventura en la II Guerra Mundial</Titulo>
         </Libro>
         <Libro>
             <Autor>Thomas Harris</Autor>
@@ -189,7 +189,7 @@
             <NumeroPaginas>448</NumeroPaginas>
             <Precio>18.0</Precio>
             <Sinopsis>Un clásico del thriller que presenta al famoso Hannibal Lecter, un brillante pero perturbador psiquiatra.</Sinopsis>
-            <Titulo>El silencio de los corderos</Titulo>
+            <Titulo>VI.VI.D</Titulo>
         </Libro>
         <Libro>
             <Autor>Gillian Flynn</Autor>
@@ -199,7 +199,7 @@
             <NumeroPaginas>496</NumeroPaginas>
             <Precio>20.5</Precio>
             <Sinopsis>Un thriller psicológico que sigue la desaparición de una mujer y los oscuros secretos que se revelan.</Sinopsis>
-            <Titulo>Perdida</Titulo>
+            <Titulo>En el umbral del futuro</Titulo>
         </Libro>
         <Libro>
             <Autor>Stephen King</Autor>
@@ -209,11 +209,11 @@
             <NumeroPaginas>512</NumeroPaginas>
             <Precio>25.99</Precio>
             <Sinopsis>Un thriller psicológico que sigue los eventos aterradores después de un juego sexual que sale mal.</Sinopsis>
-            <Titulo>El juego de Gerald</Titulo>
+            <Titulo>Sueños al otro lado de la pared</Titulo>
         </Libro>
     </Categoria>
     <Categoria>
-        <nombre>MisterioThriller</nombre>
+        <nombre>Fantasia</nombre>
         <Libro>
             <Autor>J.R.R. Tolkien</Autor>
             <Editorial>Minotauro</Editorial>
@@ -264,9 +264,39 @@
             <Sinopsis>La clásica novela que sigue las aventuras del hobbit Bilbo Bolsón en su búsqueda para recuperar el tesoro guardado por el dragón Smaug.</Sinopsis>
             <Titulo>El Hobbit</Titulo>
         </Libro>
+        <Libro>
+            <Autor>asdfas</Autor>
+            <Editorial></Editorial>
+            <FechaDePublicacion></FechaDePublicacion>
+            <Isbn>1232</Isbn>
+            <NumeroPaginas></NumeroPaginas>
+            <Precio>32.0</Precio>
+            <Sinopsis></Sinopsis>
+            <Titulo>paco</Titulo>
+        </Libro>
+        <Libro>
+            <Autor></Autor>
+            <Editorial></Editorial>
+            <FechaDePublicacion></FechaDePublicacion>
+            <Isbn>12</Isbn>
+            <NumeroPaginas></NumeroPaginas>
+            <Precio>1.0</Precio>
+            <Sinopsis></Sinopsis>
+            <Titulo>12</Titulo>
+        </Libro>
+        <Libro>
+            <Autor></Autor>
+            <Editorial></Editorial>
+            <FechaDePublicacion></FechaDePublicacion>
+            <Isbn>124</Isbn>
+            <NumeroPaginas></NumeroPaginas>
+            <Precio>124.0</Precio>
+            <Sinopsis></Sinopsis>
+            <Titulo>derecha</Titulo>
+        </Libro>
     </Categoria>
     <Categoria>
-        <nombre>MisterioThriller</nombre>
+        <nombre>Romance</nombre>
         <Libro>
             <Autor>J.R.R. Tolkien</Autor>
             <Editorial>Minotauro</Editorial>
@@ -275,7 +305,7 @@
             <NumeroPaginas>464</NumeroPaginas>
             <Precio>28.99</Precio>
             <Sinopsis>La primera entrega de la épica trilogía que sigue la odisea de Frodo para destruir el Anillo Único.</Sinopsis>
-            <Titulo>El Señor de los Anillos: La Comunidad del Anillo</Titulo>
+            <Titulo>Cuando volvamos a vernos</Titulo>
         </Libro>
         <Libro>
             <Autor>J.K. Rowling</Autor>
@@ -285,7 +315,7 @@
             <NumeroPaginas>256</NumeroPaginas>
             <Precio>19.95</Precio>
             <Sinopsis>El inicio de la serie que narra las aventuras del joven mago Harry Potter y sus amigos en la escuela de magia Hogwarts.</Sinopsis>
-            <Titulo>Harry Potter y la piedra filosofal</Titulo>
+            <Titulo>Cuentame esta noche</Titulo>
         </Libro>
         <Libro>
             <Autor>George R.R. Martin</Autor>
@@ -295,7 +325,7 @@
             <NumeroPaginas>800</NumeroPaginas>
             <Precio>32.5</Precio>
             <Sinopsis>El primer libro de la serie que inspiró la popular serie de televisión Game of Thrones, ambientada en un mundo de fantasía épica.</Sinopsis>
-            <Titulo>Canción de hielo y fuego: Juego de tronos</Titulo>
+            <Titulo>Paris despertaba tarde</Titulo>
         </Libro>
         <Libro>
             <Autor>Patrick Rothfuss</Autor>
@@ -305,7 +335,7 @@
             <NumeroPaginas>880</NumeroPaginas>
             <Precio>23.8</Precio>
             <Sinopsis>La primera entrega de la Crónica del Asesino de Reyes, que sigue la vida del músico y mago Kvothe.</Sinopsis>
-            <Titulo>El nombre del viento</Titulo>
+            <Titulo>Arriba las manos</Titulo>
         </Libro>
         <Libro>
             <Autor>J.R.R. Tolkien</Autor>
@@ -315,7 +345,7 @@
             <NumeroPaginas>320</NumeroPaginas>
             <Precio>15.75</Precio>
             <Sinopsis>La clásica novela que sigue las aventuras del hobbit Bilbo Bolsón en su búsqueda para recuperar el tesoro guardado por el dragón Smaug.</Sinopsis>
-            <Titulo>El Hobbit</Titulo>
+            <Titulo>¿Tu lo harias?</Titulo>
         </Libro>
     </Categoria>
 </biblioteca>
