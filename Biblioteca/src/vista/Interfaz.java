@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -13,9 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -28,22 +30,31 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.Document;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.*;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -72,7 +83,10 @@ public class Interfaz extends JFrame {
     private JPanel panelDatosLibros;
     private JButton btnConsultarXPath;
     private String categoriaSeleccionada;
-
+    private Libro libroActual;
+    private JButton btnEliminar;
+    private JButton btnXsl;
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -92,6 +106,7 @@ public class Interfaz extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1000, 800);
         setResizable(false);
+        setTitle("Biblioteca de Ilerna");
         contentPane = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -107,53 +122,42 @@ public class Interfaz extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
 
-        // Configuración del botón de entrada
         JButton entrar = new JButton("Entrar");
         entrar.setPreferredSize(new Dimension(180, 50));
         entrar.addActionListener(e -> mostrarPanelCategorias());
         
-        // Crear una fuente personalizada para el botón "Entrar"
         Font fuenteEntrar = null;
         try {
             fuenteEntrar = Font.createFont(Font.TRUETYPE_FONT, new File("fuentes/AlexBrush-Regular.ttf"))
-                    .deriveFont(Font.BOLD, 20); // Ajustar el tamaño según tus preferencias
+                    .deriveFont(Font.BOLD, 20);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
-            // Si hay un error al cargar la fuente, usar la fuente por defecto
             fuenteEntrar = new Font("Arial", Font.BOLD, 20);
         }
         entrar.setFont(fuenteEntrar);
         
-
-        // Configuración del panel de texto y botón de entrada
         panelTextoBoton = new JPanel();
         panelTextoBoton.setOpaque(false);
 
-        // Usar BoxLayout con eje Y para centrar verticalmente
         panelTextoBoton.setLayout(new BoxLayout(panelTextoBoton, BoxLayout.Y_AXIS));
 
-        JLabel labelBienvenida = new JLabel("¡Bienvenido a la Biblioteca!");
-        labelBienvenida.setForeground(Color.WHITE); // Color blanco
+        JLabel labelBienvenida = new JLabel("¡Bienvenido a la Biblioteca de Ilerna!");
+        labelBienvenida.setForeground(Color.WHITE);
         try {
-            // Cargar la fuente personalizada desde el archivo en la carpeta "fuentes"
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fuentes/AlexBrush-Regular.ttf"));
-            labelBienvenida.setFont(customFont.deriveFont(Font.BOLD, 50)); // Ajustar el tamaño de la letra
+            labelBienvenida.setFont(customFont.deriveFont(Font.BOLD, 50));
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
-            // Si hay un error al cargar la fuente, usar la fuente por defecto
             labelBienvenida.setFont(new Font("Arial", Font.BOLD, 50));
         }
 
-        // Centrar horizontalmente
         labelBienvenida.setAlignmentX(Component.CENTER_ALIGNMENT);
         entrar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Agregar el texto y el botón al panel
         panelTextoBoton.add(labelBienvenida);
-        panelTextoBoton.add(Box.createVerticalStrut(285)); // Espaciado vertical
+        panelTextoBoton.add(Box.createVerticalStrut(285));
         panelTextoBoton.add(entrar);
 
-        // Configuración del botón de música
         btnMusica = new JButton("Reproducir Música");
         btnMusica.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -161,13 +165,15 @@ public class Interfaz extends JFrame {
             }
         });
 
-        // Configuración del botón "Atrás" para volver al panel anterior
         btnAtras = new JButton("Salir");
         btnAtras.addActionListener(e -> volverAlPanelAnterior());
         
         btnConsultarXPath = new JButton("Consultar XPath");
         btnConsultarXPath.addActionListener(e -> manejarConsultasXPath());
-        // Configuración del panel de música y botones
+        btnEliminar = new JButton("Eliminar Libro");
+        btnEliminar.addActionListener(e -> eliminarLibro(categoriaSeleccionada,libroActual));
+        btnXsl =new JButton("Ver archivo XSL");
+        btnXsl.addActionListener(e -> btnXslActionPerformed(e));
         panelMusicaYBotones = new JPanel();
         panelMusicaYBotones.setOpaque(false);
         BoxLayout boxLayout = new BoxLayout(panelMusicaYBotones, BoxLayout.X_AXIS);
@@ -175,14 +181,17 @@ public class Interfaz extends JFrame {
         panelMusicaYBotones.add(btnMusica);
         panelMusicaYBotones.add(Box.createHorizontalStrut(10));  
         panelMusicaYBotones.add(btnConsultarXPath);
+        panelMusicaYBotones.add(Box.createHorizontalStrut(10)); 
+        panelMusicaYBotones.add(btnEliminar);
+        panelMusicaYBotones.add(btnXsl);
+        btnXsl.setVisible(false);
+        btnEliminar.setVisible(false);
         btnConsultarXPath.setVisible(false);
-        panelMusicaYBotones.add(Box.createHorizontalGlue()); // Espaciado horizontal
+        panelMusicaYBotones.add(Box.createHorizontalGlue());
         panelMusicaYBotones.add(btnAtras);
         
-
-        // Configuración del contenido general
         contentPane.setLayout(new BorderLayout());
-        contentPane.add(panelTextoBoton, BorderLayout.NORTH); // Colocar en la parte superior
+        contentPane.add(panelTextoBoton, BorderLayout.NORTH);
         contentPane.add(panelMusicaYBotones, BorderLayout.SOUTH);
 
         setLocationRelativeTo(null);
@@ -194,31 +203,116 @@ public class Interfaz extends JFrame {
             audioClip = AudioSystem.getClip();
             audioClip.open(audioStream);
 
-            // Ajustar el volumen al cargar el clip (puedes ajustar el valor según sea necesario)
             float volumenInicial = -30.0f;
             ajustarVolumen(volumenInicial);
 
-            // Reproducir música automáticamente al abrir la aplicación
             audioClip.loop(Clip.LOOP_CONTINUOUSLY);
             isPlaying = true;
 
-            // Actualizar el texto del botón después de configurar el Clip
             updateButtonText();
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             ex.printStackTrace();
         }
     }
+    private void btnXslActionPerformed(ActionEvent e) {
+        // Ruta del archivo XML
+        String xmlFilePath = "biblioteca.xml";
+
+        // Ruta del archivo XSL
+        String xsltFilePath = "bibliotecaXsl.xsl";
+
+        // Ruta para guardar el archivo HTML en la carpeta del proyecto
+        String htmlFilePath = "biblioteca.html";
+
+        // Realizar la transformación y obtener el HTML resultante
+        String html = transformToHTML(xmlFilePath, xsltFilePath);
+
+        // Guardar el HTML en un archivo
+        saveHTMLToFile(html, htmlFilePath);
+
+        // Mostrar el HTML y abrir el navegador
+        abrirEnNavegador(htmlFilePath);
+
+    }
+    private void saveHTMLToFile(String htmlContent, String filePath) {
+        try (PrintWriter writer = new PrintWriter(filePath)) {
+            writer.write(htmlContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private String transformToHTML(String xmlFilePath, String xsltFilePath) {
+        try {
+            File xmlFile = new File(xmlFilePath);
+            File xsltFile = new File(xsltFilePath);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer(new StreamSource(xsltFile));
+
+            StringWriter writer = new StringWriter();
+            transformer.transform(new StreamSource(xmlFile), new StreamResult(writer));
+
+            return writer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private void abrirEnNavegador(String filePath) {
+        try {
+            Desktop.getDesktop().browse(new File(filePath).toURI());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void eliminarLibro(String categoriaSeleccionada, Libro libroSeleccionado) {
+        try {
+            Biblioteca biblioteca = CrearXml.desmarshalizarBiblioteca("biblioteca.xml");
+            List<Categoria> categorias = biblioteca.getCategorias();
+
+            Categoria categoria = Metodos.obtenerCategoriaPorNombre(categoriaSeleccionada, categorias);
+
+            if (categoria != null) {
+                List<Libro> libros = categoria.getLibros();
+                for (Libro libro : libros) {
+                    if (libro.getTitulo().equals(libroSeleccionado.getTitulo())) {
+                        int confirmacion = JOptionPane.showConfirmDialog(
+                                this,
+                                "¿Estás seguro de que quieres eliminar el libro?",
+                                "Confirmar eliminación",
+                                JOptionPane.YES_NO_OPTION);
+
+                        if (confirmacion == JOptionPane.YES_OPTION) {
+                            libros.remove(libro);
+
+                            CrearXml.marshalizarBiblioteca(biblioteca, "biblioteca.xml");
+
+                            contentPane.remove(panelDatosLibros);
+                            mostrarPanelLibros(categoriaSeleccionada);
+                            btnEliminar.setVisible(false);
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                JOptionPane.showMessageDialog(this, "El libro no existe en la categoría seleccionada.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "La categoría no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al eliminar el libro.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void añadirLibro(String categoriaSeleccionada) {
-        // Obtener la biblioteca desde el archivo XML
         Biblioteca biblioteca = CrearXml.desmarshalizarBiblioteca("biblioteca.xml");
 
-        // Obtener la categoría actualmente seleccionada
         Categoria categoria = Metodos.obtenerCategoriaPorNombre(categoriaSeleccionada, biblioteca.getCategorias());
 
-        // Verificar si se encontró la categoría
         if (categoria != null) {
-            // Crear un cuadro de diálogo para solicitar detalles del nuevo libro al usuario
             JTextField tituloField = new JTextField();
             JTextField autorField = new JTextField();
             JTextField editorialField = new JTextField();
@@ -227,32 +321,39 @@ public class Interfaz extends JFrame {
             JTextField numPaginasField = new JTextField();
             JTextField precioField = new JTextField();
             JTextArea sinopsisArea = new JTextArea();
+            
+            sinopsisArea.setLineWrap(true);
+            sinopsisArea.setWrapStyleWord(true); 
 
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-            panel.add(new JLabel("Título:"));
-            panel.add(tituloField);
-            panel.add(new JLabel("Autor:"));
-            panel.add(autorField);
-            panel.add(new JLabel("Editorial:"));
-            panel.add(editorialField);
-            panel.add(new JLabel("Fecha de Publicación:"));
-            panel.add(fechaPublicacionField);
-            panel.add(new JLabel("ISBN:"));
-            panel.add(isbnField);
-            panel.add(new JLabel("Número de Páginas:"));
-            panel.add(numPaginasField);
-            panel.add(new JLabel("Precio:"));
-            panel.add(precioField);
-            panel.add(new JLabel("Sinopsis:"));
-            panel.add(sinopsisArea);
+
+            agregarComponenteConAlineacion(panel, new JLabel("Título:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, tituloField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("Autor:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, autorField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("Editorial:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, editorialField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("Fecha de Publicación:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, fechaPublicacionField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("ISBN:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, isbnField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("Número de Páginas:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, numPaginasField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("Precio:"), Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, precioField, Component.LEFT_ALIGNMENT);
+            agregarComponenteConAlineacion(panel, new JLabel("Sinopsis:"), Component.LEFT_ALIGNMENT);
+            JScrollPane scrollPane = new JScrollPane(sinopsisArea);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            agregarComponenteConAlineacion(panel, scrollPane, Component.LEFT_ALIGNMENT);
+            
+            panel.setPreferredSize(new Dimension(400, 300));
+
 
             int result = JOptionPane.showConfirmDialog(null, panel, "Añadir Nuevo Libro",
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-            // Verificar si el usuario presionó "OK"
             if (result == JOptionPane.OK_OPTION) {
-                // Crear una nueva instancia de Libro con los detalles proporcionados
                 Libro nuevoLibro = new Libro();
                 nuevoLibro.setTitulo(tituloField.getText());
                 nuevoLibro.setAutor(autorField.getText());
@@ -267,23 +368,19 @@ public class Interfaz extends JFrame {
                     nuevoLibro.setIsbn(isbn);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un ISBN válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Salir del método si el ISBN no es válido
+                    return;
                 }
                 try {
                     double precio = Double.parseDouble(precioField.getText());
                     nuevoLibro.setPrecio(precio);
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Por favor, introduce un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return; // Salir del método si el precio no es válido
+                    return; 
                 }
-
-                // Añadir el nuevo libro a la lista de libros de la categoría
                 categoria.getLibros().add(nuevoLibro);
 
-                // Actualizar y guardar la biblioteca en el archivo XML
                 CrearXml.marshalizarBiblioteca(biblioteca, "biblioteca.xml");
 
-                // Mostrar un mensaje de éxito al usuario
                 JOptionPane.showMessageDialog(null, "Libro añadido con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 contentPane.remove(panelLibro);
                 mostrarPanelLibros(categoriaSeleccionada);
@@ -292,36 +389,154 @@ public class Interfaz extends JFrame {
             JOptionPane.showMessageDialog(null, "La categoría no existe.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    private void agregarComponenteConAlineacion(JPanel panel, JComponent componente, float alineacion) {
+        componente.setAlignmentX(alineacion);
+        panel.add(componente);
+    }
     private void manejarConsultasXPath() {
         if (panelActual == panelLibro) {
-            // Si estamos en el panelLibro, cambiar el texto a "Añadir Libro" y manejar la acción de añadir libro
             btnConsultarXPath.setText("Añadir Libro");
             añadirLibro(categoriaSeleccionada);
 
+        } else if (panelActual == panelDatosLibros) {
+            modificarLibroEnXML(libroActual);
         } else {
-            mostrarResultadoXPath();
+        	mostrarResultadoXPath();
         }
     }
+    
+    private void modificarLibroEnXML(Libro libro) {
+        try {
+            Biblioteca biblioteca = CrearXml.desmarshalizarBiblioteca("biblioteca.xml");
+            List<Categoria> categorias = biblioteca.getCategorias();
+            String nombreCategoria = categoriaSeleccionada;
+
+            Categoria categoriaSeleccionada = Metodos.obtenerCategoriaPorNombre(nombreCategoria, categorias);
+            if (categoriaSeleccionada != null) {
+                // Solicitar los nuevos datos del libro al usuario
+                Libro nuevoLibro = obtenerDatosLibroDesdeUsuario(libro);
+
+                // Buscar el libro por título dentro de la categoría
+                for (Libro libroActual : categoriaSeleccionada.getLibros()) {
+                    if (libroActual.getTitulo().equals(libro.getTitulo())) {
+                        // Modificar la información del libro
+                    	libroActual.setTitulo(nuevoLibro.getTitulo());
+                        libroActual.setAutor(nuevoLibro.getAutor());
+                        libroActual.setEditorial(nuevoLibro.getEditorial());
+                        libroActual.setFechaDePublicacion(nuevoLibro.getFechaDePublicacion());
+                        libroActual.setIsbn(nuevoLibro.getIsbn());
+                        libroActual.setNumeroPaginas(nuevoLibro.getNumeroPaginas());
+                        libroActual.setPrecio(nuevoLibro.getPrecio());
+                        libroActual.setSinopsis(nuevoLibro.getSinopsis());
+
+                        // Guardar la biblioteca actualizada en el archivo XML
+                        CrearXml.marshalizarBiblioteca(biblioteca, "biblioteca.xml");
+
+                        // Mostrar un mensaje de éxito
+                        JOptionPane.showMessageDialog(this, "Libro modificado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        contentPane.removeAll();
+                        contentPane.add(panelMusicaYBotones);
+                        mostrarDatosLibros(libroActual,this.categoriaSeleccionada);
+                        return;
+                    }
+                }
+                // Mostrar mensaje si el libro no se encuentra en la categoría
+                JOptionPane.showMessageDialog(this, "El libro no existe en la categoría seleccionada.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "La categoría no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al modificar el libro.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private Libro obtenerDatosLibroDesdeUsuario(Libro libroExistente) {
+        JTextField tituloField = new JTextField(libroExistente.getTitulo());
+        JTextField autorField = new JTextField(libroExistente.getAutor());
+        JTextField editorialField = new JTextField(libroExistente.getEditorial());
+        JTextField fechaPublicacionField = new JTextField(libroExistente.getFechaDePublicacion());
+        JTextField isbnField = new JTextField(String.valueOf(libroExistente.getIsbn()));
+        JTextField numPaginasField = new JTextField(libroExistente.getNumeroPaginas());
+        JTextField precioField = new JTextField(String.valueOf(libroExistente.getPrecio()));
+        JTextArea sinopsisArea = new JTextArea(libroExistente.getSinopsis());
+
+        sinopsisArea.setLineWrap(true);
+        sinopsisArea.setWrapStyleWord(true);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        agregarComponenteConAlineacion(panel, new JLabel("Título:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, tituloField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("Autor:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, autorField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("Editorial:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, editorialField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("Fecha de Publicación:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, fechaPublicacionField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("ISBN:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, isbnField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("Número de Páginas:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, numPaginasField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("Precio:"), Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, precioField, Component.LEFT_ALIGNMENT);
+        agregarComponenteConAlineacion(panel, new JLabel("Sinopsis:"), Component.LEFT_ALIGNMENT);
+        JScrollPane scrollPane = new JScrollPane(sinopsisArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        agregarComponenteConAlineacion(panel, scrollPane, Component.LEFT_ALIGNMENT);
+
+        panel.setPreferredSize(new Dimension(400, 300));
+
+        int result = JOptionPane.showConfirmDialog(null, panel, "Modificar Libro",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            Libro nuevoLibro = new Libro();
+            nuevoLibro.setTitulo(tituloField.getText());
+            nuevoLibro.setAutor(autorField.getText());
+            nuevoLibro.setEditorial(editorialField.getText());
+            nuevoLibro.setFechaDePublicacion(fechaPublicacionField.getText());
+            nuevoLibro.setNumeroPaginas(numPaginasField.getText());
+            nuevoLibro.setSinopsis(sinopsisArea.getText());
+
+            try {
+                long isbn = Long.parseLong(isbnField.getText());
+                nuevoLibro.setIsbn(isbn);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, introduce un ISBN válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+
+            try {
+                double precio = Double.parseDouble(precioField.getText());
+                nuevoLibro.setPrecio(precio);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, introduce un precio válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+            System.out.println(nuevoLibro.toString());
+            return nuevoLibro;
+        }else {
+        	System.out.println("cancelo la operacion");
+        }
+        return null;
+    }
+    
     private void mostrarResultadoXPath() {
         String consultaXPath = JOptionPane.showInputDialog(this, "Introduce la consulta XPath:");
         if (consultaXPath != null && !consultaXPath.trim().isEmpty()) {
             try {
-                // Realizar la consulta XPath
                 XPathFactory xPathFactory = XPathFactory.newInstance();
                 XPath xPath= xPathFactory.newXPath();
-             // Obtener el documento XML desde el archivo
                 DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
                 org.w3c.dom.Document document = documentBuilder.parse(new File("biblioteca.xml"));
 
-                // Compilar la expresión XPath
                 XPathExpression xPathExpression = xPath.compile(consultaXPath);
 
-                // Evaluar la expresión XPath en el documento XML
                 Object resultado = xPathExpression.evaluate(document, XPathConstants.NODESET);
 
-                // Procesar y mostrar los resultados en un JOptionPane
                 if (resultado instanceof NodeList) {
                     NodeList nodeList = (NodeList) resultado;
                     StringBuilder resultados = new StringBuilder("Resultados de la consulta XPath:\n");
@@ -330,12 +545,10 @@ public class Interfaz extends JFrame {
                         Node node = nodeList.item(i);
                         resultados.append(node.getNodeValue()).append("\n");
                     }
-
                     JOptionPane.showMessageDialog(this, resultados.toString(), "Resultados XPath", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "La consulta XPath no devolvió nodos.", "Error XPath", JOptionPane.ERROR_MESSAGE);
                 }
-
             } catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Error al ejecutar la consulta XPath.", "Error XPath", JOptionPane.ERROR_MESSAGE);
@@ -344,19 +557,15 @@ public class Interfaz extends JFrame {
             JOptionPane.showMessageDialog(this, "Consulta XPath vacía. Introduce una consulta válida.", "Error XPath", JOptionPane.ERROR_MESSAGE);
         }
     }
-    // Método para cambiar el estado de reproducción de música
     private void toggleMusica() {
         if (isPlaying) {
             audioClip.stop();
         } else {
             audioClip.loop(Clip.LOOP_CONTINUOUSLY);
         }
-        // Cambiar el estado de reproducción
         isPlaying = !isPlaying;
-        // Actualizar el texto del botón
         updateButtonText();
     }
-
     private void ajustarVolumen(float volume) {
         FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
 
@@ -371,42 +580,33 @@ public class Interfaz extends JFrame {
             System.out.println("El control de volumen no es compatible");
         }
     }
-
     private void updateButtonText() {
         String buttonText = isPlaying ? "Pausar Música" : "Reproducir Música";
         btnMusica.setText(buttonText);
     }
-
-    // Método para mostrar el panel de categorías
     private void mostrarPanelCategorias() {
-        // Crear panel de categorías
     	btnAtras.setText("Atrás");
+    	btnXsl.setVisible(true);
     	btnConsultarXPath.setVisible(true);
         panelCategorias = new JPanel(new BorderLayout());
         panelCategorias.setOpaque(false);
 
-        // Crear panel para los botones de categorías
         panelBotonesCategorias = new JPanel();
         panelBotonesCategorias.setOpaque(false);
 
-        // Obtener categorías (debes implementar según tus necesidades)
         List<String> categorias = obtenerCategorias();
 
-        // Establecer el layout como null para controlar manualmente la posición y el tamaño de los botones
         panelBotonesCategorias.setLayout(null);
 
         Font font = null;
 
         try {
-            // Cargar la fuente personalizada desde el archivo
             font = Font.createFont(Font.TRUETYPE_FONT, new File("fuentes/AlexBrush-Regular.ttf"));
 
-            // Derivar la fuente con el estilo y tamaño deseados
-            font = font.deriveFont(Font.BOLD, 22); // Ajusta según tus preferencias
+            font = font.deriveFont(Font.BOLD, 22);
 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
-            // Manejar errores al cargar la fuente
         }
 
         int buttonWidth = 180;
@@ -414,32 +614,28 @@ public class Interfaz extends JFrame {
         int gapBetweenButtons = 120;
         int buttonsPerColumn = 3;
         
-        int x = 198; // Coordenada x inicial
-        int y = 110; // Coordenada y inicial
+        int x = 198; 
+        int y = 110; 
 
         for (int i = 0; i < categorias.size(); i++) {
             String categoria = categorias.get(i);
             JButton btnCategoria = new JButton(categoria);
 
-            // Aplicar la fuente a cada botón
             if (font != null) {
                 btnCategoria.setFont(font);
             }
 
             btnCategoria.setForeground(Color.BLACK);
 
-            // Establecer el tamaño preferido del botón
             btnCategoria.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
 
-            // Establecer la posición y tamaño manualmente
             btnCategoria.setBounds(x, y, buttonWidth, buttonHeight);
 
             btnCategoria.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Obtener el texto del botón (nombre de la categoría)
+                	btnXsl.setVisible(false);
                     categoriaSeleccionada = btnCategoria.getText();
-                    // Llamar al método para mostrar el panel de libros
                     btnConsultarXPath.setText("Añadir Libro");
                     btnConsultarXPath.setVisible(true);
                     mostrarPanelLibros(categoriaSeleccionada);
@@ -447,57 +643,41 @@ public class Interfaz extends JFrame {
             });
             panelBotonesCategorias.add(btnCategoria);
 
-            // Calcular las nuevas coordenadas para el siguiente botón
             if ((i + 1) % buttonsPerColumn == 0) {
-                // Ir a la siguiente columna
                 x += buttonWidth + gapBetweenButtons+100;
-                y = 110; // Reiniciar la coordenada y para la nueva columna
+                y = 110;
             } else {
-                // Mover a la siguiente fila
                 y += buttonHeight + gapBetweenButtons;
             }
         }
 
         try {
-            // Cargar la fuente personalizada desde el archivo
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fuentes/AlexBrush-Regular.ttf"));
 
-            // Derivar la fuente con el estilo y tamaño deseados
-            Font fuenteDerivada = customFont.deriveFont(Font.BOLD, 50); // Ajusta según tus preferencias
+            Font fuenteDerivada = customFont.deriveFont(Font.BOLD, 50);
 
-            // Crear el JLabel para las categorías
             JLabel labelCategorias = new JLabel("Categorías", SwingConstants.CENTER);
 
-            // Establecer la fuente personalizada en el JLabel
             labelCategorias.setFont(fuenteDerivada);
 
-            // Establecer el color del texto
             labelCategorias.setForeground(Color.WHITE);
 
-            // Agregar el JLabel al panel de categorías
             panelCategorias.add(labelCategorias, BorderLayout.NORTH);
 
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
-            // Manejar errores al cargar la fuente
         }
-
-        // Remover el panel de texto y botón actual
         contentPane.remove(panelTextoBoton);
         panelActual = panelCategorias;
-        // Agregar el panel de categorías al contentPane
         panelCategorias.add(panelBotonesCategorias, BorderLayout.CENTER);
         contentPane.add(panelCategorias, BorderLayout.CENTER);
 
-        // Actualizar la interfaz
         revalidate();
         repaint();
     }
     public static List<Libro> obtenerLibrosPorCategoria(String categoriaNombre) {
-        // Obtener la biblioteca deserializada del archivo XML
         Biblioteca biblioteca = CrearXml.desmarshalizarBiblioteca("biblioteca.xml");
 
-        // Buscar la categoría por nombre
         Categoria categoriaSeleccionada = null;
         for (Categoria categoria : biblioteca.getCategorias()) {
             if (categoria.getNombre().toString().equals(categoriaNombre)) {
@@ -505,12 +685,10 @@ public class Interfaz extends JFrame {
                 break;
             }
         }
-        // Verificar si se encontró la categoría
         if (categoriaSeleccionada == null) {
             System.out.println("La categoría no existe.");
-            return new ArrayList<>(); // Devolver una lista vacía si no se encontró la categoría
+            return new ArrayList<>();
         }
-        // Devolver la lista de libros de la categoría seleccionada
         return categoriaSeleccionada.getLibros();
     }
     private Font cargarFuente() {
@@ -523,16 +701,13 @@ public class Interfaz extends JFrame {
         return customFont;
     }
     private void mostrarDatosLibros(Libro libro, String categoriaSeleccionada) {
-        // Crear el panelDatosLibros
         panelDatosLibros = new JPanel();
         panelDatosLibros.setOpaque(false);
-
+        this.libroActual = libro;
         Font customFont = cargarFuente();
 
-        // Derivar la fuente con el estilo y tamaño deseados
-        Font fuenteDerivada = customFont.deriveFont(Font.BOLD, 40); // Ajusta según tus preferencias
+        Font fuenteDerivada = customFont.deriveFont(Font.BOLD, 40);
 
-        // Crear JLabels para los atributos del libro específico
         JLabel labelTitulo = crearJLabel("Titulo: " + libro.getTitulo(), fuenteDerivada);
         JLabel labelAutor = crearJLabel("Autor: " + libro.getAutor(), fuenteDerivada);
         JLabel labelEditorial = crearJLabel("Editorial: " + libro.getEditorial(), fuenteDerivada);
@@ -541,7 +716,6 @@ public class Interfaz extends JFrame {
         JLabel labelNumeroPaginas = crearJLabel("Número de Páginas: " + libro.getNumeroPaginas(), fuenteDerivada);
         JLabel labelPrecio = crearJLabel("Precio: " + libro.getPrecio(), fuenteDerivada);
 
-        // Crear JTextArea para la sinopsis
         JTextArea textAreaSinopsis = new JTextArea("Sinopsis: " + libro.getSinopsis());
         textAreaSinopsis.setEditable(false);
         textAreaSinopsis.setLineWrap(true);
@@ -550,19 +724,14 @@ public class Interfaz extends JFrame {
         textAreaSinopsis.setForeground(Color.WHITE);
         textAreaSinopsis.setOpaque(false);
 
-        // Crear el layout para organizar los componentes verticalmente con margen
         BoxLayout boxLayout = new BoxLayout(panelDatosLibros, BoxLayout.Y_AXIS);
         panelDatosLibros.setLayout(boxLayout);
 
-        // Agregar margen izquierdo
-
         panelDatosLibros.setBorder(BorderFactory.createEmptyBorder(10, 20, 0, 0));
 
-        // Agregar margen entre cada componente
         int margenEntreComponentes = 10;
         panelDatosLibros.add(Box.createVerticalStrut(margenEntreComponentes));
 
-        // Alinear a la izquierda
         labelTitulo.setAlignmentX(Component.LEFT_ALIGNMENT);
         labelAutor.setAlignmentX(Component.LEFT_ALIGNMENT);
         labelEditorial.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -572,7 +741,6 @@ public class Interfaz extends JFrame {
         labelPrecio.setAlignmentX(Component.LEFT_ALIGNMENT);
         textAreaSinopsis.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        // Agregar cada componente al panelDatosLibros
         panelDatosLibros.add(labelTitulo);
         panelDatosLibros.add(Box.createVerticalStrut(margenEntreComponentes));
         panelDatosLibros.add(labelAutor);
@@ -589,13 +757,11 @@ public class Interfaz extends JFrame {
         panelDatosLibros.add(Box.createVerticalStrut(margenEntreComponentes));
         panelDatosLibros.add(textAreaSinopsis);
 
-        // Remover el panel actual (ya sea panelCategorias o panelLibro)
         contentPane.remove(panelLibro);
         panelActual = panelDatosLibros;
-        // Agregar el panelMostrarDatos al contentPane
+        btnConsultarXPath.setText("Modificar Libro");
         contentPane.add(panelActual, BorderLayout.CENTER);
 
-        // Actualizar la interfaz
         revalidate();
         repaint();
     }
@@ -604,13 +770,12 @@ public class Interfaz extends JFrame {
         JLabel label = new JLabel(texto);
         label.setFont(fuente);
         label.setForeground(Color.WHITE);
-        label.setOpaque(false); // Hacer el JLabel transparente
-        label.setBackground(new Color(0, 0, 0, 0)); // Establecer el fondo transparente
+        label.setOpaque(false); 
+        label.setBackground(new Color(0, 0, 0, 0));
         return label;
     }
 
     private void mostrarPanelLibros(String categoriaSeleccionada) {
-        // Crear panel de libros
         btnConsultarXPath.setVisible(true);
         panelLibro = new JPanel(new BorderLayout());
         panelLibro.setOpaque(false);
@@ -619,24 +784,18 @@ public class Interfaz extends JFrame {
 		try {
 			customFont = Font.createFont(Font.TRUETYPE_FONT, new File("fuentes/AlexBrush-Regular.ttf"));
 		} catch (FontFormatException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch blocks
 			e1.printStackTrace();
 		}
 
-        // Derivar la fuente con el estilo y tamaño deseados
-        Font fuenteDerivada = customFont.deriveFont(Font.BOLD, 22); // Ajusta según tus preferencias
-        Font fuenteDerivada1 = customFont.deriveFont(Font.BOLD, 50); // Ajusta según tus preferencias
-        // Crear panel para los botones de libros
+        Font fuenteDerivada = customFont.deriveFont(Font.BOLD, 22);
+        Font fuenteDerivada1 = customFont.deriveFont(Font.BOLD, 50);
         JPanel panelBotonesLibros = new JPanel();
         panelBotonesLibros.setOpaque(false);
 
-        // Obtener libros de la categoría seleccionada
         List<Libro> libros = obtenerLibrosPorCategoria(categoriaSeleccionada);
 
-        // Establecer el layout como null para controlar manualmente la posición y el tamaño de los botones
         panelBotonesLibros.setLayout(null);
 
         Font font = fuenteDerivada;
@@ -645,72 +804,60 @@ public class Interfaz extends JFrame {
         int buttonHeight = 50;
         int gapBetweenButtons = 20;
 
-        int x = 50; // Coordenada x inicial
-        int y = 50; // Coordenada y inicial
+        int x = 50;
+        int y = 50;
         int botonesPorColumna = 7;
         for (int i = 0; i < libros.size(); i++) {
             Libro libro = libros.get(i);
             JButton btnLibro = new JButton(libro.getTitulo());
 
-            // Aplicar la fuente a cada botón
             btnLibro.setFont(font);
             btnLibro.setForeground(Color.BLACK);
 
-            // Establecer el tamaño preferido del botón
             btnLibro.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
 
-            // Establecer la posición y tamaño manualmente
             btnLibro.setBounds(x, y, buttonWidth, buttonHeight);
 
             btnLibro.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Llamar al método para mostrar los datos del libro específico
                     Interfaz.this.categoriaSeleccionada = categoriaSeleccionada;
                     panelActual = panelLibro;
                     btnConsultarXPath.setText("Añadir Libro");
                     btnConsultarXPath.setVisible(true);
                     mostrarDatosLibros(libro, categoriaSeleccionada);
+                    btnEliminar.setVisible(true);
                 }
             });
 
             panelBotonesLibros.add(btnLibro);
 
-            // Calcular las nuevas coordenadas para el siguiente botón
             y += buttonHeight + gapBetweenButtons;
 
-            // Si se alcanza el número máximo de botones por columna, pasar a la siguiente columna
             if ((i + 1) % botonesPorColumna == 0) {
-                y = 50; // Reiniciar la coordenada y
-                x += buttonWidth + gapBetweenButtons; // Mover a la siguiente columna
+                y = 50; 
+                x += buttonWidth + gapBetweenButtons;
             }
         }
 
-        // Crear el JLabel para el nombre de la categoría seleccionada
         JLabel labelCategoriaSeleccionada = new JLabel("Categoría: " + categoriaSeleccionada, SwingConstants.CENTER);
         labelCategoriaSeleccionada.setFont(fuenteDerivada1);
         labelCategoriaSeleccionada.setForeground(Color.WHITE);
 
-        // Agregar el JLabel al panelLibro
         panelLibro.add(labelCategoriaSeleccionada, BorderLayout.NORTH);
-        // Agregar el panel de botones de libros al centro
+
         panelLibro.add(panelBotonesLibros, BorderLayout.CENTER);
 
-        // Remover el panel de categorías actual
         contentPane.remove(panelCategorias);
         panelActual = panelLibro;
-        // Agregar el panel de libros al contentPane
         contentPane.add(panelLibro, BorderLayout.CENTER);
 
-        // Actualizar la interfaz
         revalidate();
         repaint();
     }
 
-    // Método para volver al panel anterior
     private void volverAlPanelAnterior() {
         if (panelActual == panelTextoBoton || panelActual == null) {
-            // Si estamos en el panelTextoBoton, mostrar un diálogo de confirmación y salir si es afirmativo
         	btnConsultarXPath.setVisible(false);
             btnAtras.setText("Salir");
             int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de salir?", "Salir",
@@ -722,17 +869,16 @@ public class Interfaz extends JFrame {
                 btnConsultarXPath.setVisible(false);
             }
         } else if (panelActual == panelCategorias) {
-            // Si estamos en el panelCategorias, volver al panelTextoBoton
+        	btnXsl.setVisible(false);
             contentPane.remove(panelCategorias);
             contentPane.add(panelTextoBoton, BorderLayout.NORTH);
             btnAtras.setText("Salir");
             btnConsultarXPath.setVisible(false);
             revalidate();
             repaint();
-            // Actualizar la referencia al panel actual
             panelActual = panelTextoBoton;
         } else if (panelActual == panelLibro) {
-            // Si estamos en el panelLibro, volver al panelCategorias
+        	btnXsl.setVisible(true);
             contentPane.remove(panelLibro);
             contentPane.add(panelCategorias, BorderLayout.CENTER);
             btnConsultarXPath.setText("Consultar XPath");
@@ -742,12 +888,13 @@ public class Interfaz extends JFrame {
 
             revalidate();
             repaint();
-            // Actualizar la referencia al panel actual
             panelActual = panelCategorias;
         } else if (panelActual == panelDatosLibros) {
-            // Remover el panelDatosLibros y volver al panelLibro
+        	btnConsultarXPath.setText("Añadir Libro");
+        	btnEliminar.setVisible(false);
+
             contentPane.remove(panelDatosLibros);
-            contentPane.add(panelLibro, BorderLayout.CENTER);
+            mostrarPanelLibros(categoriaSeleccionada);
             panelActual = panelLibro;
             revalidate();
             repaint();

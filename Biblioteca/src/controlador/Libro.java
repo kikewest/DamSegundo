@@ -14,11 +14,9 @@ public class Libro {
     private String Sinopsis;
     private Double Precio;
 
-    // Constructor por defecto necesario para JAXB
     public Libro() {
     }
 
-    // Constructor con parámetros
     public Libro(String titulo, String autor, Long isbn, String editorial, String fechaDePublicacion,
                 String numeroPaginas, String sinopsis, Double precio) {
         this.Titulo = titulo;
@@ -85,7 +83,14 @@ public class Libro {
         this.NumeroPaginas = numeroPaginas;
     }
 
-    @XmlElement(name = "Sinopsis")
+    @Override
+	public String toString() {
+		return "Libro [Titulo=" + Titulo + ", Autor=" + Autor + ", isbn=" + isbn + ", Editorial=" + Editorial
+				+ ", FechaDePublicacion=" + FechaDePublicacion + ", NumeroPaginas=" + NumeroPaginas + ", Sinopsis="
+				+ Sinopsis + ", Precio=" + Precio + "]";
+	}
+
+	@XmlElement(name = "Sinopsis")
     public String getSinopsis() {
         return Sinopsis;
     }

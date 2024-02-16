@@ -12,7 +12,6 @@ public class Categoria {
     private CategoriasEnum nombre;
     private List<Libro> libros;
 
-    // Constructores, getters y setters
 
     @XmlElement(name = "nombre")
     public CategoriasEnum getNombre() {

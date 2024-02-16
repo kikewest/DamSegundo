@@ -114,16 +114,14 @@ public class Metodos {
 
 		return biblioteca;
 	}
-	public static Categoria obtenerCategoriaPorNombre(String nombreCategoria, List<Categoria> categorias) {
-	    for (Categoria categoria : categorias) {
-	        if (categoria.getNombre().toString().equalsIgnoreCase(nombreCategoria)) {
-	            System.out.println("Categoría encontrada: " + nombreCategoria);
-	            return categoria;
-	        }
-	    }
-	    System.out.println("Categoría no encontrada: " + nombreCategoria);
-	    return null;
-	}
+	public static Categoria obtenerCategoriaPorNombre(String nombre, List<Categoria> categorias) {
+        for (Categoria categoria : categorias) {
+            if (categoria.getNombre().toString().equals(nombre)) {
+                return categoria;
+            }
+        }
+        return null;
+    }
 	public static void guardarBiblioteca() {
 	    try {
 	        // Configurar el contexto de JAXB para la clase Biblioteca
@@ -145,19 +143,15 @@ public class Metodos {
 	}
 	public static Biblioteca obtenerBiblioteca() {
 	    try {
-	        // Configurar el contexto de JAXB para la clase Biblioteca
 	        JAXBContext context = JAXBContext.newInstance(Biblioteca.class);
 
-	        // Crear el objeto Unmarshaller
 	        Unmarshaller unmarshaller = context.createUnmarshaller();
 
-	        // Leer el archivo XML y realizar unmarshalling a la clase Biblioteca
 	        Biblioteca biblioteca = (Biblioteca) unmarshaller.unmarshal(new File("biblioteca.xml"));
 
 	        return biblioteca;
 	    } catch (JAXBException e) {
 	        e.printStackTrace();
-	        // Manejar errores al obtener la biblioteca
 	    }
 	    return null;
 	}

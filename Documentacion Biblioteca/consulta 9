@@ -1,0 +1,300 @@
+﻿<Libro>
+  <Autor>MIKEL SANTIAGO</Autor>
+  <Editorial>EDICIONES B</Editorial>
+  <FechaDePublicacion>25-01-2024</FechaDePublicacion>
+  <Isbn>9788466677318</Isbn>
+  <NumeroPaginas>576</NumeroPaginas>
+  <Precio>21.75</Precio>
+  <Sinopsis>Hay personas a las que dejamos atrás, hay deudas que nunca terminamos de pagar.</Sinopsis>
+  <Titulo>El Hijo Olvidado</Titulo>
+</Libro>
+<Libro>
+  <Autor>EDUARDO MENDOZA</Autor>
+  <Editorial>SEIX BARRAL</Editorial>
+  <FechaDePublicacion>24-01-2024</FechaDePublicacion>
+  <Isbn>9788432242823</Isbn>
+  <NumeroPaginas>408</NumeroPaginas>
+  <Precio>20.8</Precio>
+  <Sinopsis>No vuelve con un detective chiflado, sino con nueve. No vuelve con un caso, sino con tres.Vuelve el mejor Eduardo Mendoza.</Sinopsis>
+  <Titulo>Tres Enigmas</Titulo>
+</Libro>
+<Libro>
+  <Autor>FERMINA CAÑAVERAS</Autor>
+  <Editorial>ESPASA</Editorial>
+  <FechaDePublicacion>10-01-2024</FechaDePublicacion>
+  <Isbn>9788467071764</Isbn>
+  <NumeroPaginas>504</NumeroPaginas>
+  <Precio>19.85</Precio>
+  <Sinopsis>La novela que nos cuenta la dura realidad de las mujeres españolas obligadas a prostituirse en los campos de concentración.</Sinopsis>
+  <Titulo>El Barracon</Titulo>
+</Libro>
+<Libro>
+  <Autor>EMILY MCINTIRE</Autor>
+  <Editorial>MONTENA</Editorial>
+  <FechaDePublicacion>01-02-2024</FechaDePublicacion>
+  <Isbn>9788419650351</Isbn>
+  <NumeroPaginas>448</NumeroPaginas>
+  <Precio>19.9</Precio>
+  <Sinopsis>Después de Hooked, llega Scarred: la esperadísima secuela de la saga  Nunca Jamás que ha conquistado a TikTok, donde los villanos de cuento hallan su final feliz.</Sinopsis>
+  <Titulo>Scarred</Titulo>
+</Libro>
+<Libro>
+  <Autor>EDUARDO MENDOZA</Autor>
+  <Editorial>SEIX BARRAL</Editorial>
+  <FechaDePublicacion>24-01-2024</FechaDePublicacion>
+  <Isbn>9788432242823</Isbn>
+  <NumeroPaginas>408</NumeroPaginas>
+  <Precio>20.8</Precio>
+  <Sinopsis>No vuelve con un detective chiflado, sino con nueve. No vuelve con un caso, sino con tres.Vuelve el mejor Eduardo Mendoza.</Sinopsis>
+  <Titulo>Paris Despierta</Titulo>
+</Libro>
+<Libro>
+  <Autor>Yuval Noah Harari</Autor>
+  <Editorial>Debate</Editorial>
+  <FechaDePublicacion>15-04-2014</FechaDePublicacion>
+  <Isbn>9788499924217</Isbn>
+  <NumeroPaginas>512</NumeroPaginas>
+  <Precio>25.0</Precio>
+  <Sinopsis>Una breve historia de la humanidad que explora el desarrollo de la sociedad.</Sinopsis>
+  <Titulo>Sapiens: De animales a dioses</Titulo>
+</Libro>
+<Libro>
+  <Autor>Ashlee Vance</Autor>
+  <Editorial>Ecco</Editorial>
+  <FechaDePublicacion>19-05-2015</FechaDePublicacion>
+  <Isbn>9780062301253</Isbn>
+  <NumeroPaginas>400</NumeroPaginas>
+  <Precio>30.0</Precio>
+  <Sinopsis>Una biografía autorizada del visionario empresario Elon Musk.</Sinopsis>
+  <Titulo>Elon Musk: Tesla, SpaceX y la búsqueda de un futuro fantástico</Titulo>
+</Libro>
+<Libro>
+  <Autor>Stephen Hawking</Autor>
+  <Editorial>Crítica</Editorial>
+  <FechaDePublicacion>16-10-2018</FechaDePublicacion>
+  <Isbn>9788498389621</Isbn>
+  <NumeroPaginas>256</NumeroPaginas>
+  <Precio>22.5</Precio>
+  <Sinopsis>El renombrado físico Stephen Hawking aborda preguntas fundamentales sobre el universo y la existencia humana.</Sinopsis>
+  <Titulo>Breves respuestas a las grandes preguntas</Titulo>
+</Libro>
+<Libro>
+  <Autor>Tara Westover</Autor>
+  <Editorial>Random House</Editorial>
+  <FechaDePublicacion>20-02-2018</FechaDePublicacion>
+  <Isbn>9780399590504</Isbn>
+  <NumeroPaginas>352</NumeroPaginas>
+  <Precio>18.99</Precio>
+  <Sinopsis>La autora relata su viaje desde una educación hogareña en una familia disfuncional hasta obtener un doctorado en Cambridge.</Sinopsis>
+  <Titulo>Educated</Titulo>
+</Libro>
+<Libro>
+  <Autor>Yuval Noah Harari</Autor>
+  <Editorial>Debate</Editorial>
+  <FechaDePublicacion>11-02-2011</FechaDePublicacion>
+  <Isbn>9788499923999</Isbn>
+  <NumeroPaginas>464</NumeroPaginas>
+  <Precio>28.5</Precio>
+  <Sinopsis>Una exploración fascinante de la evolución y el impacto de Homo sapiens en el mundo.</Sinopsis>
+  <Titulo>Sapiens: Breve historia de la humanidad</Titulo>
+</Libro>
+<Libro>
+  <Autor>Dan Brown</Autor>
+  <Editorial>Vintage</Editorial>
+  <FechaDePublicacion>18-03-2003</FechaDePublicacion>
+  <Isbn>9780307474278</Isbn>
+  <NumeroPaginas>592</NumeroPaginas>
+  <Precio>14.99</Precio>
+  <Sinopsis>Un thriller que mezcla misterio, simbología y conspiraciones en torno a un oscuro secreto religioso.</Sinopsis>
+  <Titulo>El código Da Vinci</Titulo>
+</Libro>
+<Libro>
+  <Autor>Paula Hawkins</Autor>
+  <Editorial>Riverhead Books</Editorial>
+  <FechaDePublicacion>13-01-2015</FechaDePublicacion>
+  <Isbn>9780735212169</Isbn>
+  <NumeroPaginas>336</NumeroPaginas>
+  <Precio>22.95</Precio>
+  <Sinopsis>Un emocionante thriller psicológico que sigue la vida de una mujer obsesionada con una pareja aparentemente perfecta.</Sinopsis>
+  <Titulo>La chica del tren</Titulo>
+</Libro>
+<Libro>
+  <Autor>Thomas Harris</Autor>
+  <Editorial>DeBolsillo</Editorial>
+  <FechaDePublicacion>15-05-1988</FechaDePublicacion>
+  <Isbn>9788497592252</Isbn>
+  <NumeroPaginas>448</NumeroPaginas>
+  <Precio>18.0</Precio>
+  <Sinopsis>Un clásico del thriller que presenta al famoso Hannibal Lecter, un brillante pero perturbador psiquiatra.</Sinopsis>
+  <Titulo>El silencio de los corderos</Titulo>
+</Libro>
+<Libro>
+  <Autor>Gillian Flynn</Autor>
+  <Editorial>Penguin Books</Editorial>
+  <FechaDePublicacion>05-05-2012</FechaDePublicacion>
+  <Isbn>9788490328278</Isbn>
+  <NumeroPaginas>496</NumeroPaginas>
+  <Precio>20.5</Precio>
+  <Sinopsis>Un thriller psicológico que sigue la desaparición de una mujer y los oscuros secretos que se revelan.</Sinopsis>
+  <Titulo>Perdida</Titulo>
+</Libro>
+<Libro>
+  <Autor>Stephen King</Autor>
+  <Editorial>Scribner</Editorial>
+  <FechaDePublicacion>01-05-1992</FechaDePublicacion>
+  <Isbn>9781501144202</Isbn>
+  <NumeroPaginas>512</NumeroPaginas>
+  <Precio>25.99</Precio>
+  <Sinopsis>Un thriller psicológico que sigue los eventos aterradores después de un juego sexual que sale mal.</Sinopsis>
+  <Titulo>El juego de Gerald</Titulo>
+</Libro>
+<Libro>
+  <Autor>Rafael Jara</Autor>
+  <Editorial>Vintage</Editorial>
+  <FechaDePublicacion>18-03-2003</FechaDePublicacion>
+  <Isbn>9788415148043</Isbn>
+  <NumeroPaginas>592</NumeroPaginas>
+  <Precio>14.99</Precio>
+  <Sinopsis>Un thriller que mezcla misterio, simbología y conspiraciones en torno a un oscuro secreto religioso.</Sinopsis>
+  <Titulo>La espiral y la sombra</Titulo>
+</Libro>
+<Libro>
+  <Autor>Paula Hawkins</Autor>
+  <Editorial>Riverhead Books</Editorial>
+  <FechaDePublicacion>13-01-2015</FechaDePublicacion>
+  <Isbn>9780735212169</Isbn>
+  <NumeroPaginas>336</NumeroPaginas>
+  <Precio>22.95</Precio>
+  <Sinopsis>Un emocionante thriller psicológico que sigue la vida de una mujer obsesionada con una pareja aparentemente perfecta.</Sinopsis>
+  <Titulo>Abraxas en una aventura en la II Guerra Mundial</Titulo>
+</Libro>
+<Libro>
+  <Autor>Thomas Harris</Autor>
+  <Editorial>DeBolsillo</Editorial>
+  <FechaDePublicacion>15-05-1988</FechaDePublicacion>
+  <Isbn>9788497592252</Isbn>
+  <NumeroPaginas>448</NumeroPaginas>
+  <Precio>18.0</Precio>
+  <Sinopsis>Un clásico del thriller que presenta al famoso Hannibal Lecter, un brillante pero perturbador psiquiatra.</Sinopsis>
+  <Titulo>VI.VI.D</Titulo>
+</Libro>
+<Libro>
+  <Autor>Gillian Flynn</Autor>
+  <Editorial>Penguin Books</Editorial>
+  <FechaDePublicacion>05-05-2012</FechaDePublicacion>
+  <Isbn>9788490328278</Isbn>
+  <NumeroPaginas>496</NumeroPaginas>
+  <Precio>20.5</Precio>
+  <Sinopsis>Un thriller psicológico que sigue la desaparición de una mujer y los oscuros secretos que se revelan.</Sinopsis>
+  <Titulo>En el umbral del futuro</Titulo>
+</Libro>
+<Libro>
+  <Autor>Stephen King</Autor>
+  <Editorial>Scribner</Editorial>
+  <FechaDePublicacion>01-05-1992</FechaDePublicacion>
+  <Isbn>9781501144202</Isbn>
+  <NumeroPaginas>512</NumeroPaginas>
+  <Precio>25.99</Precio>
+  <Sinopsis>Un thriller psicológico que sigue los eventos aterradores después de un juego sexual que sale mal.</Sinopsis>
+  <Titulo>Sueños al otro lado de la pared</Titulo>
+</Libro>
+<Libro>
+  <Autor>J.R.R. Tolkien</Autor>
+  <Editorial>Minotauro</Editorial>
+  <FechaDePublicacion>29-07-1954</FechaDePublicacion>
+  <Isbn>9788445000666</Isbn>
+  <NumeroPaginas>464</NumeroPaginas>
+  <Precio>28.99</Precio>
+  <Sinopsis>La primera entrega de la épica trilogía que sigue la odisea de Frodo para destruir el Anillo Único.</Sinopsis>
+  <Titulo>El Señor de los Anillos: La Comunidad del Anillo</Titulo>
+</Libro>
+<Libro>
+  <Autor>J.K. Rowling</Autor>
+  <Editorial>Salamandra</Editorial>
+  <FechaDePublicacion>26-06-1997</FechaDePublicacion>
+  <Isbn>9788478884454</Isbn>
+  <NumeroPaginas>256</NumeroPaginas>
+  <Precio>19.95</Precio>
+  <Sinopsis>El inicio de la serie que narra las aventuras del joven mago Harry Potter y sus amigos en la escuela de magia Hogwarts.</Sinopsis>
+  <Titulo>Harry Potter y la piedra filosofal</Titulo>
+</Libro>
+<Libro>
+  <Autor>George R.R. Martin</Autor>
+  <Editorial>Gigamesh</Editorial>
+  <FechaDePublicacion>06-08-1996</FechaDePublicacion>
+  <Isbn>9788496208908</Isbn>
+  <NumeroPaginas>800</NumeroPaginas>
+  <Precio>32.5</Precio>
+  <Sinopsis>El primer libro de la serie que inspiró la popular serie de televisión Game of Thrones, ambientada en un mundo de fantasía épica.</Sinopsis>
+  <Titulo>Canción de hielo y fuego: Juego de tronos</Titulo>
+</Libro>
+<Libro>
+  <Autor>Patrick Rothfuss</Autor>
+  <Editorial>Plaza &amp; Janés</Editorial>
+  <FechaDePublicacion>01-04-2007</FechaDePublicacion>
+  <Isbn>9788499082479</Isbn>
+  <NumeroPaginas>880</NumeroPaginas>
+  <Precio>23.8</Precio>
+  <Sinopsis>La primera entrega de la Crónica del Asesino de Reyes, que sigue la vida del músico y mago Kvothe.</Sinopsis>
+  <Titulo>El nombre del viento</Titulo>
+</Libro>
+<Libro>
+  <Autor>J.R.R. Tolkien</Autor>
+  <Editorial>Minotauro</Editorial>
+  <FechaDePublicacion>21-09-1937</FechaDePublicacion>
+  <Isbn>9788445071407</Isbn>
+  <NumeroPaginas>320</NumeroPaginas>
+  <Precio>15.75</Precio>
+  <Sinopsis>La clásica novela que sigue las aventuras del hobbit Bilbo Bolsón en su búsqueda para recuperar el tesoro guardado por el dragón Smaug.</Sinopsis>
+  <Titulo>El Hobbit</Titulo>
+</Libro>
+<Libro>
+  <Autor>J.R.R. Tolkien</Autor>
+  <Editorial>Minotauro</Editorial>
+  <FechaDePublicacion>29-07-1954</FechaDePublicacion>
+  <Isbn>9788445000666</Isbn>
+  <NumeroPaginas>464</NumeroPaginas>
+  <Precio>28.99</Precio>
+  <Sinopsis>La primera entrega de la épica trilogía que sigue la odisea de Frodo para destruir el Anillo Único.</Sinopsis>
+  <Titulo>Cuando volvamos a vernos</Titulo>
+</Libro>
+<Libro>
+  <Autor>J.K. Rowling</Autor>
+  <Editorial>Salamandra</Editorial>
+  <FechaDePublicacion>26-06-1997</FechaDePublicacion>
+  <Isbn>9788478884454</Isbn>
+  <NumeroPaginas>256</NumeroPaginas>
+  <Precio>19.95</Precio>
+  <Sinopsis>El inicio de la serie que narra las aventuras del joven mago Harry Potter y sus amigos en la escuela de magia Hogwarts.</Sinopsis>
+  <Titulo>Cuentame esta noche</Titulo>
+</Libro>
+<Libro>
+  <Autor>George R.R. Martin</Autor>
+  <Editorial>Gigamesh</Editorial>
+  <FechaDePublicacion>06-08-1996</FechaDePublicacion>
+  <Isbn>9788496208908</Isbn>
+  <NumeroPaginas>800</NumeroPaginas>
+  <Precio>32.5</Precio>
+  <Sinopsis>El primer libro de la serie que inspiró la popular serie de televisión Game of Thrones, ambientada en un mundo de fantasía épica.</Sinopsis>
+  <Titulo>Paris despertaba tarde</Titulo>
+</Libro>
+<Libro>
+  <Autor>Patrick Rothfuss</Autor>
+  <Editorial>Plaza &amp; Janés</Editorial>
+  <FechaDePublicacion>01-04-2007</FechaDePublicacion>
+  <Isbn>9788499082479</Isbn>
+  <NumeroPaginas>880</NumeroPaginas>
+  <Precio>23.8</Precio>
+  <Sinopsis>La primera entrega de la Crónica del Asesino de Reyes, que sigue la vida del músico y mago Kvothe.</Sinopsis>
+  <Titulo>Arriba las manos</Titulo>
+</Libro>
+<Libro>
+  <Autor>J.R.R. Tolkien</Autor>
+  <Editorial>Minotauro</Editorial>
+  <FechaDePublicacion>21-09-1937</FechaDePublicacion>
+  <Isbn>9788445071407</Isbn>
+  <NumeroPaginas>320</NumeroPaginas>
+  <Precio>15.75</Precio>
+  <Sinopsis>La clásica novela que sigue las aventuras del hobbit Bilbo Bolsón en su búsqueda para recuperar el tesoro guardado por el dragón Smaug.</Sinopsis>
+  <Titulo>¿Tu lo harias?</Titulo>
+</Libro>

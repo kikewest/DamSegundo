@@ -7,7 +7,6 @@ import java.util.List;
 public class Biblioteca {
     private List<Categoria> categorias;
 
-    // Constructor, getters y setters
 
     @XmlElement(name = "Categoria")
     public List<Categoria> getCategorias() {

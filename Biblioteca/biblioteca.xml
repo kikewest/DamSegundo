@@ -264,36 +264,6 @@
             <Sinopsis>La clásica novela que sigue las aventuras del hobbit Bilbo Bolsón en su búsqueda para recuperar el tesoro guardado por el dragón Smaug.</Sinopsis>
             <Titulo>El Hobbit</Titulo>
         </Libro>
-        <Libro>
-            <Autor>asdfas</Autor>
-            <Editorial></Editorial>
-            <FechaDePublicacion></FechaDePublicacion>
-            <Isbn>1232</Isbn>
-            <NumeroPaginas></NumeroPaginas>
-            <Precio>32.0</Precio>
-            <Sinopsis></Sinopsis>
-            <Titulo>paco</Titulo>
-        </Libro>
-        <Libro>
-            <Autor></Autor>
-            <Editorial></Editorial>
-            <FechaDePublicacion></FechaDePublicacion>
-            <Isbn>12</Isbn>
-            <NumeroPaginas></NumeroPaginas>
-            <Precio>1.0</Precio>
-            <Sinopsis></Sinopsis>
-            <Titulo>12</Titulo>
-        </Libro>
-        <Libro>
-            <Autor></Autor>
-            <Editorial></Editorial>
-            <FechaDePublicacion></FechaDePublicacion>
-            <Isbn>124</Isbn>
-            <NumeroPaginas></NumeroPaginas>
-            <Precio>124.0</Precio>
-            <Sinopsis></Sinopsis>
-            <Titulo>derecha</Titulo>
-        </Libro>
     </Categoria>
     <Categoria>
         <nombre>Romance</nombre>
