@@ -25,7 +25,7 @@ public class Metodos {
 	}
 
 	
-	private static Biblioteca crearBiblioteca() {
+	public static Biblioteca crearBiblioteca() {
 		List<Categoria> categorias = new ArrayList<>();
 
 		// FiccionLiteraria
@@ -155,7 +155,7 @@ public class Metodos {
 	    }
 	    return null;
 	}
-	private static Libro crearLibro(String titulo, String autor, Long isbn, String editorial,
+	public static Libro crearLibro(String titulo, String autor, Long isbn, String editorial,
 			String fechaDePublicacion, String numeroPaginas, String sinopsis, Double precio) {
 		Libro libro = new Libro();
 		libro.setTitulo(titulo);

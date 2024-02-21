@@ -1,1 +1,0 @@
-Guia de Uso, Memoria , Diagrama de clases ,¿pruebas unitarias?

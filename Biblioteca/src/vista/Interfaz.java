@@ -307,7 +307,7 @@ public class Interfaz extends JFrame {
             JOptionPane.showMessageDialog(this, "Error al eliminar el libro.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void añadirLibro(String categoriaSeleccionada) {
+    public void añadirLibro(String categoriaSeleccionada) {
         Biblioteca biblioteca = CrearXml.desmarshalizarBiblioteca("biblioteca.xml");
 
         Categoria categoria = Metodos.obtenerCategoriaPorNombre(categoriaSeleccionada, biblioteca.getCategorias());
@@ -393,7 +393,7 @@ public class Interfaz extends JFrame {
         componente.setAlignmentX(alineacion);
         panel.add(componente);
     }
-    private void manejarConsultasXPath() {
+    public void manejarConsultasXPath() {
         if (panelActual == panelLibro) {
             btnConsultarXPath.setText("Añadir Libro");
             añadirLibro(categoriaSeleccionada);
